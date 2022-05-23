@@ -1,132 +1,295 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import deleteIcon from './img/delete-icon.png';
 import './table.css';
 
 const Main = () => {
+    //Nomes.
+    var [nomeCampoEntrada, setNomeCampoEntrada] = useState("Entrada");
+    var [nomeCampoSaida, setNomeCampoSaida] = useState("Saída");
 
-    //Variáveis que vão armazenar os valores dos inputs "receberSalario", "receberRendaExtra".
-    var receberSalario = 0;
-    var receberRendaExtra = 0;
-    var valorTotalReceita = 0;
+    //Valores.
+    var [valorCampoEntrada, setValorCampoEntrada] = useState(0);
+    var [valorCampoSaida, setValorCampoSaida] = useState(0);
 
-    var receberAluguel = 0;
-    var receberCompras = 0;
-    var receberIluminacao = 0;
-    var receberAgua = 0;
-    var receberInternet = 0;
-    var receberLazer = 0;
+    //Contadores.
+    var [contadorEntrada, setContadorEntrada] = useState(0);
+    var [contadorSaida, setContadorSaida] = useState(0);
 
-    var custoTotalDespesas = 0;
-    var descontarSalario = 0;
+    //Listas de entradas e saídas.
+    const [camposEntrada, setCamposEntrada] = useState([]);
+    const [camposSaida, setCamposSaida] = useState([]);
 
-    //Métodos para atribuir os valores nas devidas variáveis da receita.
-    const inputSalario = (salario) => {
-        receberSalario = parseFloat(salario.target.value);
-        if(isNaN(receberSalario)){receberSalario = 0};
-        calcularValorTotal();
-        descontarDespesas();
-    };
-    const inputRendaExtra = (rendaExtra) => {
-        receberRendaExtra = parseFloat(rendaExtra.target.value);
-        if(isNaN(receberRendaExtra)){receberRendaExtra = 0};
-        calcularValorTotal();
-        descontarDespesas();
-    };
+    //Calcular a renda total no fim do mês.
+    var [rendaFimMes,setRendaFimMes] = useState([]);
 
-    //Método que vai calcular o valor total das receitas.
-    const calcularValorTotal = () => {
-        valorTotalReceita = receberSalario + receberRendaExtra;
-        var formatarReceita = valorTotalReceita.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
-        document.getElementById("receber").innerHTML = formatarReceita;
+    //Coletar o nome e o valor dos campos de entradas.
+    function setarNomeEntrada(nomeInput){
+        setNomeCampoEntrada(
+            nomeCampoEntrada = nomeInput.target.value
+        );
     };
+    function setarValorEntrada(valorInput){
+        setValorCampoEntrada(
+            valorCampoEntrada = parseFloat(valorInput.target.value)
+        );
+    };
+    
+    //Adicionar campos na lista de entradas.
+    const adicionarCamposEntrada = () => {
+        setContadorEntrada(contadorEntrada+1);
+        if(nomeCampoEntrada === undefined){
+            nomeCampoEntrada = `Entrada 0${contadorEntrada}`;
+        };
+        const campoEntradaDefault = {
+            labelNameEntrada: nomeCampoEntrada,
+            valorEntrada: valorCampoEntrada,
+            entradaFormatada: valorCampoEntrada.toLocaleString(
+                'pt-br',{style:'currency',currency:'BRL'}
+            )
+        };
+        setCamposEntrada([...camposEntrada, campoEntradaDefault]);
 
-    //Métodos para atribuir os valores nas devidas variáveis da despesa.
-    const inputAluguel = (aluguel) => {
-        receberAluguel = parseFloat(aluguel.target.value);
-        if(isNaN(receberAluguel)){receberAluguel = 0};
-        descontarDespesas();
-    };
-    const inputCompras = (compras) => {
-        receberCompras = parseFloat(compras.target.value);
-        if(isNaN(receberCompras)){receberCompras = 0};
-        descontarDespesas();
-    };
-    const inputIluminacao = (iluminacao) => {
-        receberIluminacao = parseFloat(iluminacao.target.value);
-        if(isNaN(receberIluminacao)){receberIluminacao = 0};
-        descontarDespesas();
-    };
-    const inputAgua = (agua) => {
-        receberAgua = parseFloat(agua.target.value);
-        if(isNaN(receberAgua)){receberAgua = 0};
-        descontarDespesas();
-    };
-    const inputInternet = (internet) => {
-        receberInternet = parseFloat(internet.target.value);
-        if(isNaN(receberInternet)){receberInternet = 0};
-        descontarDespesas();
-    };
-    const inputLazer = (lazer) => {
-        receberLazer = parseFloat(lazer.target.value);
-        if(isNaN(receberLazer)){receberLazer = 0};
-        descontarDespesas();
+        document.getElementById('input-nome-campo-entrada').value = '';
+        document.getElementById('input-valor-campo-entrada').value = '';
+        setNomeCampoEntrada(nomeCampoEntrada = undefined);
+        setValorCampoEntrada(valorCampoEntrada = 0);
     };
 
-    //Método para subtrair as despesas do salário.
-    const descontarDespesas = () => {
-        custoTotalDespesas = (receberAluguel + receberCompras + receberIluminacao + receberAgua + receberLazer + receberInternet);
-        descontarSalario = valorTotalReceita - custoTotalDespesas;
-        var formatarReceitaFimMes = descontarSalario.toLocaleString('pt-br',{style:'currency',currency: 'BRL'});
-        document.getElementById("receber-despesas").innerHTML = formatarReceitaFimMes;
+    //Deletar campos na lista de entradas.
+    const deletarCamposEntrada = (atributoDeletar) => {
+        setContadorEntrada(contadorEntrada-1);
+        const deletarEntrada = atributoDeletar.target.getAttribute('removeritensentradas');
+        const filtrar = camposEntrada.filter(
+            itemEntrada => itemEntrada.labelNameEntrada !== deletarEntrada
+        );
+        setCamposEntrada(filtrar);
+    };
+
+    //Coletar o nome e o valor dos campos de saídas.
+    function setarNomeSaida(nomeInput){
+        setNomeCampoSaida(
+            nomeCampoSaida = nomeInput.target.value
+        );
+    };
+    function setarValorSaida(valorInput){
+        setValorCampoSaida(
+            valorCampoSaida = parseFloat(valorInput.target.value)
+        );
+    };
+
+    //Adicionar campos na lista de saídas.
+    const adicionarCamposSaida = () => {
+        setContadorSaida(contadorSaida+1);
+        if(nomeCampoSaida === undefined){
+            nomeCampoSaida = `Saída 0${contadorSaida}`;
+        };
+        const campoSaidaDefault = {
+            labelNameSaida: nomeCampoSaida,
+            valorSaida: valorCampoSaida,
+            saidaFormatada: valorCampoSaida.toLocaleString(
+                'pt-br',{style:'currency',currency:'BRL'}
+            )
+        };
+        setCamposSaida([...camposSaida, campoSaidaDefault]);
+
+        document.getElementById('input-nome-campo-saida').value = '';
+        document.getElementById('input-valor-campo-saida').value = '';
+        setNomeCampoSaida(nomeCampoSaida = undefined);
+        setValorCampoSaida(valorCampoSaida = 0);
+    };
+
+    //Remover campos da lista de saídas.
+    const deletarCamposSaida = (atributoDeletar) => {
+        setContadorSaida(contadorSaida-1);
+        const deletarSaida = atributoDeletar.target.getAttribute('removeritenssaidas');
+        const filtrar = camposSaida.filter(
+            itemSaida => itemSaida.labelNameSaida !== deletarSaida
+        );
+        setCamposSaida(filtrar);
+    };
+
+    //Calcular a renda total no fim do mês.
+    useEffect(()=>{
+        calcularRendaFimMes();
+    },[camposEntrada,camposSaida]);
+
+    const calcularRendaFimMes = () => {
+        var totalEntradas = camposEntrada.map(
+            itemEntrada => itemEntrada.valorEntrada).reduce(
+                (entradaAnt,EntradaAtual)=>entradaAnt + EntradaAtual, 0);
+        var totalSaidas = camposSaida.map(
+            itemSaida => itemSaida.valorSaida).reduce(
+                (saidaAnt,saidaAtual)=>saidaAnt + saidaAtual, 0);
+        var rendaTotalFimMes = (totalEntradas - totalSaidas).toLocaleString(
+                'pt-br',{style:'currency',currency:'BRL'});
+        const atribuirRenda = {
+                valorRendaFinal: rendaTotalFimMes
+        };
+        setRendaFimMes([atribuirRenda]);
     };
 
     //Retorno do componente.
     return(
-        <div className="main">
-            <div className="interface-system">
-                <h1>SISTEMA FINANCEIRO PESSOAL</h1>
-                <div className="primeiro-campo">
-                    <h2>RECEITAS</h2>
-                    <fieldset className="receitas">
-                        <label htmlFor="input-salario">Salário</label>
-                        <input type="text" id="input-salario" onChange = {inputSalario}/><br/>
-                        <label htmlFor="input-renda-extra">Renda Extra</label>
-                        <input type="text" id="input-renda-extra" onChange = {inputRendaExtra}/><br/>
-                    </fieldset>
+        <div className="principal">
+        <div className="interface-sistema">
+            <h1 className="titulo-projeto">SISTEMA DE CONTROLE FINANCEIRO</h1>
+            <div className="campo">
+                <h2 className="nome-campo">ENTRADAS/RENDA</h2>
 
-                    <fieldset className="total-receita">
-                        <label>
-                        Receita total: <label id="receber">R$ 0,00</label>
+                <fieldset className="corpo-campo" id="fieldset-entradas">
+                <div className="cabeçalho-descrição-valor">
+                    <label className="descrição">Descrição</label>
+                    <label className="valor">Valor</label>
+                </div>
+                <hr className="separador"></hr>
+                <div className="apresentar-tabela">
+                    {camposEntrada.map((propEntrada,index)=>(
+                    <div key={index} className="retornar-formulario">
+                        <label 
+                            className="label-descrição"
+                            id="nome-campo">
+                            {propEntrada.labelNameEntrada}
                         </label>
-                    </fieldset>
+                        <label
+                            className="label-valor"
+                            id="valor-campo">
+                            {propEntrada.entradaFormatada}
+                        </label>
+                        <img
+                            className="delete-icon"
+                            src={deleteIcon}
+                            removeritensentradas={propEntrada.labelNameEntrada}
+                            onClick={deletarCamposEntrada}>
+                        </img>
+                    </div>
+                    ))}
+                </div>
+                </fieldset>
+
+                <div>
+                    {camposEntrada.length > 0 && (
+                        <fieldset className="total-formulario">
+                        <div>
+                            <label className="label-total">Total de entradas: </label>
+                            {camposEntrada.map(
+                            indiceEntrada=>indiceEntrada.valorEntrada).reduce(
+                            (prev,curr)=>prev+curr,0).toLocaleString(
+                            'pt-br',{style:'currency',currency:'BRL'})}
+                        </div>
+                        </fieldset>
+                    )}
                 </div>
 
-                <div className="segundo-campo">
-                    <h2>DESPESAS</h2>
-                    <fieldset className="despesas">
-                        <label htmlFor="aluguel" >Aluguel</label>
-                        <input type="text" id="aluguel" onChange = {inputAluguel}/><br/>
-                        <label htmlFor="compras" >Compras</label>
-                        <input type="text" id="compras" onChange = {inputCompras}/><br/>
-                        <label htmlFor="iluminacao" >Iluminação</label>
-                        <input type="text" id="iluminacao" onChange = {inputIluminacao}/><br/>
-                        <label htmlFor="agua" >Água</label>
-                        <input type="text" id="agua" onChange = {inputAgua}/><br/>
-                        <label htmlFor="internet" >Internet</label>
-                        <input type="text" id="internet" onChange = {inputInternet}/><br/>
-                        <label htmlFor="lazer" >Lazer</label>
-                        <input type="text" id="lazer" onChange = {inputLazer}/><br/>
-                    </fieldset>
-             
-                    <fieldset className="receita-fim-mes">
-                        <label>
-                        Receita no fim do mês: <label id="receber-despesas">R$ 0,00</label>
-                        </label>
-                    </fieldset>
-                </div>
-                <p className="creditos">
-                    Desenvolvido por Marcos Aurélio Lopes de Araújo
-                </p>
+                <fieldset className="adicionar-novos-campos">
+                    <label className="label-novo-campo">Nova Entrada:</label>
+                    <input 
+                        type="text"
+                        id="input-nome-campo-entrada"
+                        className="inputs-adicionar"
+                        placeholder="Descrição"
+                        onChange={setarNomeEntrada}>
+                    </input>
+                    <input
+                        type="text"
+                        id="input-valor-campo-entrada"
+                        className="inputs-adicionar"
+                        placeholder="Valor"
+                        onChange={setarValorEntrada}>
+                    </input>
+                    <button
+                        className="botao-adicionar-campo"
+                        onClick={adicionarCamposEntrada}>
+                        ADICIONAR
+                    </button><br/>
+                </fieldset>
             </div>
+
+            <div className="campo">
+                <h2 className="nome-campo">SAÍDAS/DESPESAS</h2>
+                <fieldset className="corpo-campo" id="fieldset-saidas">
+                <div className="cabeçalho-descrição-valor">
+                    <label className="descrição">Descrição</label>
+                    <label className="valor">Valor</label>
+                </div>
+                <hr className="separador"></hr>
+                <div className="apresentar-tabela">
+                    {camposSaida.map((propSaida,index)=>(
+                    <div key={index} className="retornar-formulario">
+                        <label 
+                            className="label-descrição"
+                            id="nome-campo">
+                            {propSaida.labelNameSaida}
+                        </label>
+                        <label 
+                            className="label-valor"
+                            id="valor-campo">
+                            {propSaida.saidaFormatada}
+                        </label>
+                        <img
+                            className="delete-icon"
+                            src={deleteIcon}
+                            removeritenssaidas={propSaida.labelNameSaida}
+                            onClick={deletarCamposSaida}>
+                        </img>
+                    </div>
+                    ))}
+                </div>
+                </fieldset>
+
+                <div>
+                    {camposSaida.length > 0 && (
+                       <fieldset className="total-formulario">
+                        <div>
+                            <label className="label-total">Total de saídas: </label>
+                            {camposSaida.map(
+                            indiceSaida=>indiceSaida.valorSaida).reduce(
+                            (prev,curr)=>prev+curr,0).toLocaleString(
+                            'pt-br',{style:'currency',currency:'BRL'})}
+                        </div>
+                        </fieldset> 
+                    )}
+                </div>
+
+                <fieldset className="adicionar-novos-campos">
+                <label className="label-novo-campo">Nova Saída: </label>
+                    <input 
+                        type="text"
+                        id="input-nome-campo-saida"
+                        className="inputs-adicionar"
+                        placeholder="Descrição"
+                        onChange={setarNomeSaida}>
+                    </input>
+                    <input
+                        type="text"
+                        id="input-valor-campo-saida"
+                        className="inputs-adicionar"
+                        placeholder="Valor"
+                        onChange={setarValorSaida}>
+                    </input>
+                    <button
+                        className="botao-adicionar-campo"
+                        onClick={adicionarCamposSaida}>
+                        ADICIONAR
+                    </button><br/>
+                </fieldset>
+            </div>
+
+            <div className="campo">
+                <fieldset className="total-renda">
+                {rendaFimMes.map((propRenda,index)=>(
+                <div key={index}>
+                    <label className="label-total">Renda total no fim do mês: </label>
+                    <label>{propRenda.valorRendaFinal}</label>
+                </div>
+                ))}
+                </fieldset>
+            </div>
+
+            <p className="creditos">
+            Desenvolvido por Marcos Aurélio Lopes de Araújo.
+            </p>
+
+        </div>
         </div>
     );
 }

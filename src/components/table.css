@@ -1,113 +1,172 @@
-.main{
-    margin-top: 100px;
-
+.principal{
     display: flex;
     justify-content: center;
-    
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
     color: rgb(58, 104, 96);
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(231, 250, 247);
 }
-.interface-system{
+.interface-sistema{
+    padding: 0px 10px;
+    background-color: rgb(214, 245, 240);
+}
+.titulo-projeto{
+    display: flex;
     justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
+    margin: 0px;
+    padding: 20px 0px 20px;
 }
 
-.primeiro-campo h2{
-    margin-top:0px;
+.nome-campo{
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
     margin-bottom:0px;
-    padding: 8px;
-
+    padding: 8px 0px 8px;
+    font-size: 24px;
     background-color:rgb(137, 208, 196);
     color: rgb(58, 104, 96);
 }
-.segundo-campo h2{
-    margin-top:50px;
-    margin-bottom:0px;
-    padding: 8px;
-
-    background-color: rgb(137, 208, 196);
-    color: rgb(58, 104, 96);
-}
-.receitas{
+.corpo-campo{
+    align-items: center;
     justify-content: center;
-    align-self: center;
     margin: 0px;
+    padding: 0px;
     border: none;
-    
-    background-color: rgb(149, 229, 216);
+    background-color: white;
 }
-.despesas{
-    justify-content: center;
-    align-self: center;
+.campo{
+    margin-bottom: 40px;
+}
+.cabeçalho-descrição-valor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 0px;
-    border: none;
-
-    background-color: rgb(149, 229, 216);
+    padding: 3px 0px 3px;
+    font-weight: bold;
+    border-color: rgb(151, 231, 217);
+    background-color:rgb(180, 235, 226);
 }
-.receitas label{
-    width: 390px;
+.descrição{
+    margin-left: 25px;
+}
+.valor{
+    margin-right: 70px;
+}
+.separador{
+    border: none;
+    border-top: 3px solid;
+    margin: 0px;
+    padding: 0px;
+    color: rgb(137, 208, 196);
+}
+.apresentar-tabela{
+    margin: 0px;
+    padding: 0px;
+}
+.retornar-formulario{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: rgb(90, 144, 135);
+}
+.label-descrição{
+    width: 400px;
     display: inline-block;
     align-items: center;
 }
-.despesas label{
-    width: 390px;
+.label-valor{
+    width: 70px;
     display: inline-block;
     align-items: center;
 }
-
-.receitas input{
-    width: 100px;
+.delete-icon{
+    height: 13px;
+    margin-bottom: 3px;
+}
+.total-formulario{
+    display: flex;
+    justify-content: center;
     border: none;
-    border-radius: 50px;
-    outline: 1px solid;
-    text-align: center;
-
-    background-color: rgb(247, 247, 247);
-    color: rgb(58, 104, 96);
-    outline-color: rgb(130, 209, 196);
+    margin: 0px;
+    padding: 10px 0px 10px;
+    border-color: rgb(151, 231, 217);
+    background-color:rgb(230, 248, 245);
 }
-.despesas input{
-    width: 100px;
+.adicionar-novos-campos{
     border: none;
-    border-radius: 50px;
+    margin: 0px;
+    padding: 5px 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}
+.label-novo-campo{
+    width: 120px;
+    font-size: 15px;
+    color: rgb(90, 144, 135);
+}
+.inputs-adicionar{
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+    width: 150px;
+    height: 20px;
+    font-family: 'Poppins';
+    border-color: rgb(151, 231, 217);
+    color: rgb(58, 104, 96);
+}
+.inputs-adicionar:focus{
     outline: 1px solid;
-    text-align: center;
-
-    background-color: rgb(247, 247, 247);
+    font-family: 'Poppins';
     color: rgb(58, 104, 96);
-    outline-color: rgb(130, 209, 196);
+    outline-color: rgb(212, 185, 133);
 }
-.despesas input:focus{
+.inputs-adicionar::placeholder{
+    font-family: 'Poppins';
+    color: rgb(165, 165, 165);
+}
+.inputs-adicionar:hover{
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+    width: 150px;
+    height: 20px;
+    font-family: 'Poppins';
+    border-color: rgb(212, 185, 133);
     color: rgb(58, 104, 96);
 }
-.total-receita{
-    border: 1px solid;
+.botao-adicionar-campo{
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px 8px;
+    background-color: rgb(130, 209, 196);
+    color: rgb(90, 144, 135);
+}
+.botao-adicionar-campo:hover{
+    background-color: rgb(231, 198, 141);
+    color: rgb(138, 115, 72);
+}
+.botao-adicionar-campo:focus{
+    outline: 2px solid;
+    outline-color: rgb(212, 185, 133);
+}
+.total-renda{
+    display: flex;
+    justify-content: center;
+    border: none;
     margin: 0px;
-
+    padding: 10px 0px 10px;
+    color: rgb(90, 144, 135);
     border-color: rgb(151, 231, 217);
-    background-color: rgb(247, 247, 247);
-}
-.receita-fim-mes{
-    border: 1px solid;
-    margin: 0px;
-
-    border-color: rgb(151, 231, 217);
-    background-color: rgb(247, 247, 247);
-}
-.total-receita label{
- font-size: 20px;
-}
-.receita-fim-mes label{
-    font-size: 20px;
+    background-color: white;
 }
 .creditos{
     display: flex;
     justify-content: center;
     font-size: 12px;
     margin-top:80px;
-
-    color: rgb(185, 185, 185);
+    color: rgb(91, 155, 144);
 }
