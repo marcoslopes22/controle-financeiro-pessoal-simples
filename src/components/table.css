@@ -1,172 +1,172 @@
-.principal{
-    display: flex;
-    justify-content: center;
-    color: rgb(58, 104, 96);
-    background-color: rgb(231, 250, 247);
-}
-.interface-sistema{
+.main{
+    margin: 50px 0px 0px;
+    width: 500px;
     padding: 0px 10px;
-    background-color: rgb(214, 245, 240);
+    box-shadow: 0 0 1em rgba(114, 114, 114, 0.315);
+    background-color: rgb(255, 255, 255);
+    color: rgb(42, 105, 92);
 }
-.titulo-projeto{
+.project-name{
     display: flex;
     justify-content: center;
-    margin: 0px;
-    padding: 20px 0px 20px;
-}
-
-.nome-campo{
-    display: flex;
-    justify-content: center;
-    margin-top: 0px;
-    margin-bottom:0px;
-    padding: 8px 0px 8px;
-    font-size: 24px;
-    background-color:rgb(137, 208, 196);
-    color: rgb(58, 104, 96);
-}
-.corpo-campo{
     align-items: center;
-    justify-content: center;
+}
+.project-name h1{
     margin: 0px;
-    padding: 0px;
+    padding: 10px;
+    font-size: 30px;
+    background-color: transparent;
+}
+.camp-name h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 8px 0px;
+    font-size: 20px;
+    background-color: rgb(154, 232, 215);
+    color: rgb(42, 105, 92);
+}
+.description-and-value-labels{
     border: none;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0px 0px;
+    padding: 5px 20px;
+    background-color: rgb(226, 247, 242);
+    color: rgb(42, 105, 92);
+}
+.fieldset-condition{
+    border: none;
+    margin: 0px;
+    padding: 10px 0px;
     background-color: white;
 }
-.campo{
-    margin-bottom: 40px;
-}
-.cabeçalho-descrição-valor{
+.show-list{
     display: flex;
+    justify-content: start;
     align-items: center;
-    justify-content: space-between;
+
     margin: 0px;
-    padding: 3px 0px 3px;
-    font-weight: bold;
-    border-color: rgb(151, 231, 217);
-    background-color:rgb(180, 235, 226);
+    padding: 2px 15px;
+    font-size: 13px;
+    background-color: white;
+    color: rgb(42, 105, 92);
 }
-.descrição{
-    margin-left: 25px;
-}
-.valor{
-    margin-right: 70px;
-}
-.separador{
-    border: none;
-    border-top: 3px solid;
-    margin: 0px;
-    padding: 0px;
-    color: rgb(137, 208, 196);
-}
-.apresentar-tabela{
-    margin: 0px;
-    padding: 0px;
-}
-.retornar-formulario{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    color: rgb(90, 144, 135);
-}
-.label-descrição{
-    width: 400px;
-    display: inline-block;
-    align-items: center;
-}
-.label-valor{
-    width: 70px;
-    display: inline-block;
-    align-items: center;
+.label-description{
+    width: 100%;
 }
 .delete-icon{
-    height: 13px;
-    margin-bottom: 3px;
+    max-width: 12px;
+    margin: 0px 0px 1px 8px;
+    padding: 0px;
 }
-.total-formulario{
+.show-total{
     display: flex;
-    justify-content: center;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.total-list{
     border: none;
     margin: 0px;
-    padding: 10px 0px 10px;
-    border-color: rgb(151, 231, 217);
-    background-color:rgb(230, 248, 245);
+    padding: 4px 10px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: rgb(226, 247, 242);
+    color: rgb(74, 142, 129);
 }
-.adicionar-novos-campos{
-    border: none;
+.total-label{
+    font-size: 13px;
+}
+.division{
+    display: none;
+    border: 2px solid rgb(145, 236, 217);
     margin: 0px;
-    padding: 5px 10px 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: white;
+    padding: 0px;
+    background-color: rgb(145, 236, 217);
 }
-.label-novo-campo{
-    width: 120px;
-    font-size: 15px;
-    color: rgb(90, 144, 135);
-}
-.inputs-adicionar{
-    border: 1px solid;
-    border-radius: 10px;
-    padding: 5px;
-    margin-right: 5px;
-    width: 150px;
-    height: 20px;
-    font-family: 'Poppins';
-    border-color: rgb(151, 231, 217);
-    color: rgb(58, 104, 96);
-}
-.inputs-adicionar:focus{
-    outline: 1px solid;
-    font-family: 'Poppins';
-    color: rgb(58, 104, 96);
-    outline-color: rgb(212, 185, 133);
-}
-.inputs-adicionar::placeholder{
-    font-family: 'Poppins';
-    color: rgb(165, 165, 165);
-}
-.inputs-adicionar:hover{
-    border: 1px solid;
-    border-radius: 10px;
-    padding: 5px;
-    margin-right: 5px;
-    width: 150px;
-    height: 20px;
-    font-family: 'Poppins';
-    border-color: rgb(212, 185, 133);
-    color: rgb(58, 104, 96);
-}
-.botao-adicionar-campo{
-    border: none;
-    border-radius: 10px;
-    padding: 8px 15px 8px;
-    background-color: rgb(130, 209, 196);
-    color: rgb(90, 144, 135);
-}
-.botao-adicionar-campo:hover{
-    background-color: rgb(231, 198, 141);
-    color: rgb(138, 115, 72);
-}
-.botao-adicionar-campo:focus{
-    outline: 2px solid;
-    outline-color: rgb(212, 185, 133);
-}
-.total-renda{
-    display: flex;
-    justify-content: center;
-    border: none;
-    margin: 0px;
-    padding: 10px 0px 10px;
-    color: rgb(90, 144, 135);
-    border-color: rgb(151, 231, 217);
-    background-color: white;
-}
-.creditos{
+.empty-camps-messenger{
     display: flex;
     justify-content: center;
     font-size: 12px;
-    margin-top:80px;
-    color: rgb(91, 155, 144);
+    padding: 0px;
+    margin: 0px;
+    background-color: white;
+    color: rgb(138, 160, 157);
+}
+.add-new-camps{
+    display: flex;
+    justify-content: space-evenly;
+    border: none;
+    margin: 0px 0px 0px;
+    padding: 10px 0px;
+    background-color: rgb(231, 245, 242);
+    background-color: white;
+    box-shadow: 0 0 0.5em rgba(114, 114, 114, 0.315);
+}
+.add-new-camps input{
+    border-radius: 5px;
+    margin: 0px;
+    padding: 0px 4px;
+    width: 160px;
+    border: 1px solid transparent;
+    font-family: 'Poppins';
+    color: rgb(42, 105, 92);
+}
+.add-new-camps input::placeholder{
+    font-family: 'Poppins';
+    padding: 2px;
+    color: rgb(176, 207, 201);
+}
+.add-new-camps input:hover{
+    border: 1px solid rgb(145, 236, 217);
+    font-family: 'Poppins';
+    font-size: 12px;
+}
+.add-new-camps input:focus{
+    outline: 1px solid rgb(113, 190, 174);
+}
+.add-camps-button{
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 0px;
+    width: 120px;
+    height: 30px;
+    font-size: 12px;
+    background-color: rgb(154, 232, 215);
+    color: rgb(42, 105, 92);
+}
+.add-camps-button:hover{
+    border: 2px solid rgb(145, 236, 217);
+    color: rgb(145, 236, 217);
+    background-color: white;
+    font-size: 11px;
+}
+.div-warning{
+    display: flex;
+    justify-content: start;
+    margin: 0px;
+    padding: 4px 0px 10px 10px;
+    font-size: 13px;
+    background-color: transparent;
+}
+.map-total-income{
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 20px 0px;
+    background-color: rgb(226, 247, 242);
+    box-shadow: 0 0 0.5em rgba(114, 114, 114, 0.315);
+}
+.credits{
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    margin: 80px 0px;
+    padding: 10px 0px;
+    color: rgb(138, 160, 157);
 }

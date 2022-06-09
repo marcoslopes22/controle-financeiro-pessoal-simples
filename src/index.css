@@ -1,5 +1,9 @@
 body {
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  justify-content: center;
   margin: 0;
+  
   font-family: -apple-system, BlinkMacSystemFont,'Poppins', 'Cantarell' , 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
